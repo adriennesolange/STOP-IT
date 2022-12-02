@@ -66,7 +66,7 @@ var bFBT = 15000; // break interval between blocks
 // - ID via the URL of the experiment: 'XXXX.html?subject=15'(subject is the current keyword)
 // - determine ID at random with jsPsych.randomization.randomID().
 
-var id = 'random' // use one of these three options: 'participant', 'url', 'random'
+var id = 'participant' // use one of these three options: 'participant', 'url', 'random'
 
 
 // ----- CUSTOMISE SCREEN VARIABLES -----
