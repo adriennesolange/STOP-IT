@@ -54,5 +54,5 @@ var gender_options = ['Female','Male', 'Other', 'Prefer not to say']
 var text_at_start_block = '<p><p><div style="font-size:30px;Press the spacebar to begin.</p>'
 var get_ready_message = '<p>Get ready...</p>'
 var fixation_text = '<div style="font-size:60px;">+</div>'
-var end_message = "<p><p><div style="font-size:30px;Thank you for your participation!</p>" +
+var end_message = "<p>Thank you for your participation!</p>" +
   "<p>Press space to finalize the experiment.</p>"
