@@ -2,7 +2,7 @@
 var page1 = [
   '<p>Your main task is to respond to white arrows (with a black border) that appear on the screen.</p> '+
   '<p>Press the LEFT ARROW KEY with the right index finger when you see a LEFT ARROW and press the RIGHT ARROW KEY with the right ring finger when you see a RIGHT ARROW. </p>'+
-  '<p>Thus, left arrow = left key and right arrow = right key. </p>'+ '<br>' +
+  '<p><strong>Thus, left arrow = left key and right arrow = right key.</strong></p>'+ '<br>' +
   '<p>However, on some trials (stop-signal trials) the arrows will turn red after a variable delay. You have to stop your response when this happens. </p>'+
   '<p>On approximately half of the stop-signal trials, the red stop signal will appear soon and you will notice that it will be easy to stop your response. </p>'+
   '<p>On the other half of the trials, the red stop signals will appear late and it will become very difficult or even impossible to stop your response.</p>'
@@ -24,12 +24,12 @@ var informed_consent_text = [
 ];
 
 // trial by trial feedback messages
-correct_msg = '<p> correct response </p>'
-incorrect_msg = '<p> incorrect response </p>'
-too_slow_msg = '<p> too slow </p>'
-too_fast_msg = '<p> too fast </p>'
-correct_stop_msg = '<p> correct stop </p>'
-incorrect_stop_msg = '<p> remember: try to stop </p>'
+correct_msg = '<p><p><div style="font-size:30px; correct response </p>'
+incorrect_msg = '<p><p><div style="font-size:30px; incorrect response </p>'
+too_slow_msg = '<p><p><div style="font-size:30px; too slow </p>'
+too_fast_msg = '<p><p><div style="font-size:30px; too fast </p>'
+correct_stop_msg = '<p><p><div style="font-size:30px; correct stop </p>'
+incorrect_stop_msg = '<p><p><div style="font-size:30px; remember: try to stop </p>'
 
 // block feedback
 no_signal_header = "<p><b>GO TRIALS: </b></p>"
@@ -42,17 +42,17 @@ final_block_msg = "<p>Press space to continue...</p>" // after the final block t
 
 // other
 var label_previous_button = 'Previous';
-var label_next_button = 'Next';
+var label_next_button = '<p><div style="font-size:30px;Next';
 var label_consent_button = 'I agree';
-var full_screen_message = '<p>The experiment will switch to fullscreen mode when you push the button below. </p>';
-var welcome_message = ['<p>Welcome to the experiment.</p>' + '<p>Press "Next" to begin.</p>'];
+var full_screen_message = '<p><p><div style="font-size:30px;The experiment will switch to fullscreen mode when you push the button below. </p>';
+var welcome_message = ['<p><p><div style="font-size:30px;Press "Next" to begin the experiment.</p>'];
 var not_supported_message = ['<p>This experiment requires the Chrome or Firefox webbrowser.</p>'];
-var subjID_instructions = "Enter your participant ID."
+var subjID_instructions = "Enter your <strong>participant ID</strong>."
 var age_instructions = "Enter your age."
 var gender_instructions = "Choose your gender."
 var gender_options = ['Female','Male', 'Other', 'Prefer not to say']
-var text_at_start_block = '<p>Press space to begin.</p>'
+var text_at_start_block = '<p><p><div style="font-size:30px;Press the spacebar to begin.</p>'
 var get_ready_message = '<p>Get ready...</p>'
-var fixation_text = '<div style="font-size:60px;">TEST</div>'
-var end_message = "<p>Thank you for your participation.</p>" +
-  "<p>Press space to finalize the experiment (redirect to XXX).</p>"
+var fixation_text = '<div style="font-size:60px;">+</div>'
+var end_message = "<p><p><div style="font-size:30px;Thank you for your participation!</p>" +
+  "<p>Press space to finalize the experiment.</p>"

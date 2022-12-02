@@ -287,23 +287,6 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
 
 
 
-  // informed consent trial. The informed_consent_text variable comes from /configuration/text_variables.js
-
-  var consent = {
-
-    type: "instructions",
-
-    pages: [informed_consent_text],
-
-    show_clickable_nav: true,
-
-    button_label_next: label_consent_button,
-
-    allow_backward: false
-  };
-
-
-
   // if enabled below, get participant's id from participant and add it to the datafile.
 
   // the prompt is declared in the configuration/text_variables.js file
@@ -336,79 +319,6 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
     }
 
   };
-
-
-
-  // get participant's age and add it to the datafile
-
-  // the prompt is declared in the configuration/text_variables.js file
-
-  var age = {
-
-    type: 'survey-text',
-
-    questions: [{
-
-      prompt: age_instructions,
-
-      required: false
-
-    }, ],
-
-    button_label: label_next_button,
-    on_finish: function(data) {
-
-      var responses = JSON.parse(data.responses);
-
-      var code = responses.Q0;
-
-      jsPsych.data.addProperties({
-
-        age: code
-
-      });
-
-    }
-
-  };
-
-
-
-  // get participant's gender and add it to the datafile
-
-  // the prompt and options are declared in the configuration/text_variables.js file
-
-  var gender = {
-
-    type: 'survey-multi-choice',
-
-    questions: [{
-
-      prompt: gender_instructions,
-
-      options: gender_options,
-
-      required: false
-
-    }, ],
-
-    button_label: label_next_button,
-    on_finish: function(data) {
-
-      var responses = JSON.parse(data.responses);
-
-      var code = responses.Q0;
-
-      jsPsych.data.addProperties({
-
-        gender: code
-
-      });
-
-    }
-
-  };
-
 
 
   // instruction trial
@@ -812,7 +722,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       }
       if (!online) {
 
-        selected_data.localSave('csv', 'SST_data_' + subjID + '.csv');
+        selected_data.localSave('csv', 'subject_' + subjID + 'SST_data'+ '.csv');
 
       }
 
