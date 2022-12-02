@@ -154,15 +154,6 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
     button_label: label_next_button,
   };
 
-  // informed consent trial. The informed_consent_text variable comes from /configuration/text_variables.js
-  var consent = {
-    type: "instructions",
-    pages: [informed_consent_text],
-    show_clickable_nav: true,
-    button_label_next: label_consent_button,
-    allow_backward: false
-  };
-
   // if enabled below, get participant's id from participant and add it to the datafile.
   // the prompt is declared in the configuration/text_variables.js file
   var participant_id = {
@@ -180,44 +171,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       });
     }
   };
-
-  // get participant's age and add it to the datafile
-  // the prompt is declared in the configuration/text_variables.js file
-  var age = {
-    type: 'survey-text',
-    questions: [{
-      prompt: age_instructions,
-      required: true
-    }, ],
-    button_label: label_next_button,
-    on_finish: function(data) {
-      var responses = JSON.parse(data.responses);
-      var code = responses.Q0;
-      jsPsych.data.addProperties({
-        age: code
-      });
-    }
-  };
-
-  // get participant's gender and add it to the datafile
-  // the prompt and options are declared in the configuration/text_variables.js file
-  var gender = {
-    type: 'survey-multi-choice',
-    questions: [{
-      prompt: gender_instructions,
-      options: gender_options,
-      required: true
-    }, ],
-    button_label: label_next_button,
-    on_finish: function(data) {
-      var responses = JSON.parse(data.responses);
-      var code = responses.Q0;
-      jsPsych.data.addProperties({
-        gender: code
-      });
-    }
-  };
-
+  
   // instruction trial
   // the instructions are declared in the configuration/text_variables.js file
   var instructions = {
@@ -444,7 +398,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       // the next piece of codes orders the columns of the data file
       var d = selected_data.values() // get the data values
       // make an array that specifies the order of the object properties
-      var arr = ['participantID','age','gender','block_i','trial_i','stim','signal','SSD','response','rt','correct','focus','Fullscreen',
+      var arr = ['participantID','block_i','trial_i','stim','signal','SSD','response','rt','correct','focus','Fullscreen',
       'time_elapsed','browser_name','browser_version','os_name','os_version','tablet','mobile','screen_resolution','window_resolution'];
       new_arr = [] // we will fill this array with the ordered data
       function myFunction(item) { // this is function is called in the arr.forEach call below
@@ -459,7 +413,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         selected_data.values()[i] = new_obj; // insert the ordered values back in the jsPsych.data object
       }
       if (!online) {
-        selected_data.localSave('csv', 'SST_data_' + subjID + '.csv');
+        selected_data.localSave('csv', 'subject_' + subjID + 'SST_data_' + '.csv');
       }
     }
   };
@@ -473,9 +427,9 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
   // only go into fullscreen mode if 'fullscreen' is true
   if (id == "participant"){
     if (fullscreen){
-      var start_timeline = [welcome, consent, participant_id, age, gender, fullscr, instructions]
+      var start_timeline = [welcome, participant_id, fullscr, instructions]
     } else {
-      var start_timeline = [welcome, consent, participant_id, age, gender, instructions]
+      var start_timeline = [welcome, participant_id, instructions]
     }
   } else {
       if (id == "url"){
@@ -485,9 +439,9 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         var code = jsPsych.randomization.randomID(); jsPsych.data.addProperties({participantID: code});
       }
       if (fullscreen) {
-        var start_timeline = [welcome, consent, age, gender, fullscr, instructions]
+        var start_timeline = [welcome, fullscr, instructions]
       } else {
-        var start_timeline = [welcome, consent, age, gender, instructions]
+        var start_timeline = [welcome, instructions]
       }
   }
 
@@ -570,17 +524,17 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       if (online){
         var subjID = jsPsych.data.get().last(1).values()[0]['participantID'];
         if (data.trial_index == id_index){ // write header
-          data_row = "participantID,age,gender,block_i,trial_i,stim,signal,SSD,response,rt,correct," +
+          data_row = "participantID,block_i,trial_i,stim,signal,SSD,response,rt,correct," +
                         "focus,Fullscreen,time_elapsed,browser_name,browser_version,os_name,os_version," +
                         "tablet,mobile,screen_resolution,window_resolution\n"
-          appendData('SST_data_'+ subjID +'.csv',data_row)
+          appendData('subject_' + subjID + 'SST_data_' + '.csv',data_row)
         } else if (data.trial_type == 'custom-stop-signal-plugin'){ // append data each stimulus
           data_row = data.participantID + ',' + data.age + ',' + data.gender + ',' + data.block_i + ',' + data.trial_i + ',' +
                         data.stim + ',' + data.signal + ',' + data.SSD + ',' + data.response + ',' + data.rt + ',' + data.correct + ',' +
                         data.focus + ',' + data.Fullscreen + ',' + data.time_elapsed + ',' + data.browser_name + ',' +
                         data.browser_version + ',' + data.os_name + ',' + data.os_version + ',' + data.tablet + ',' + data.mobile + ',' +
                         data.screen_resolution + ',' + data.window_resolution + '\n'
-          appendData('SST_data_'+ subjID +'.csv',data_row)
+          appendData('subject_' + subjID + 'SST_data_' + '.csv',data_row)
         }
       }
     },
